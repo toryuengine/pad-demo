@@ -1,19 +1,52 @@
 #include <vector>
 #include <array>
 #include <iostream>
+#include <random>
+
+
+std::random_device seed_gen;
+std::mt19937 engine(seed_gen());
+std::uniform_int_distribution<int> dist(0, 6);
 
 std::vector<std::vector<int>> createfield() {
     int h = 5; //高さの定義
     int w = 6; //横幅の定義
     std::vector<std::vector<int>> arr = {};//配列の定義    
-
-    for(int i = 0; i < h; i++) {
+    arr.push_back({9,9,9,9,9,9,9,9});
+    for(int i = 1; i < h; i++) {
         arr.push_back({});
+        arr[i].push_back(9);
         for(int t = 0; t < w; t++) {
-            arr[i].push_back(0);
+            arr[i].push_back(dist(engine));
         }
+        arr[i].push_back(9);
     }
-        return arr;
+    arr.push_back({9,9,9,9,9,9,9,9});
+    return arr;
+}
+
+int findcomborow(std::vector<std::vector<int>> arr) {
+    std::vector<std::vector<int>> combo;
+    std::vector<std::vector<int>> confirmed;
+
+    
+
+    for (int r=1; arr.size() > r & ; r++) {
+        int point;
+        for (int c=0; arr[r].size(); c++) {
+            if (point == arr[r][c]){
+                combo.push_back({r, c});
+            }else{
+                if(combo.size() >= 3){
+                    
+                }
+            }
+
+
+                   }
+    }
+
+
 }
 
 int drawscreen(const std::vector<std::vector<int>>& arr) {
