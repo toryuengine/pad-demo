@@ -25,28 +25,29 @@ std::vector<std::vector<int>> createfield() {
     return arr;
 }
 
-int findcomborow(std::vector<std::vector<int>> arr) {
-    std::vector<std::vector<int>> combo;
+std::vector<std::vector<int>> findcomborow(std::vector<std::vector<int>> arr) {
+    std::vector<std::vector<int>> combo = {};
     std::vector<std::vector<int>> confirmed;
-
-    
-
-    for (int r=1; arr.size() > r & ; r++) {
-        int point;
-        for (int c=0; arr[r].size(); c++) {
+    int point;
+    for (int r=1; arr.size() > r & r<5; r++) {
+        for (int c=0; arr[r].size() > c; c++) {
             if (point == arr[r][c]){
                 combo.push_back({r, c});
             }else{
                 if(combo.size() >= 3){
-                    
+                    for (int t = 0; combo.size() > t; t++) {
+                        for (int p = 0; combo[t].size() > p; p++) {
+                            confirmed.push_back({t, p});
+                        }
+                    }
+                    std::vector<std::vector<int>> combo = {};
                 }
+                point = arr[r][c];
             }
-
-
-                   }
+    }
     }
 
-
+    return confirmed;
 }
 
 int drawscreen(const std::vector<std::vector<int>>& arr) {
@@ -65,4 +66,6 @@ int main() {
     std::vector<std::vector<int>> arr;
     arr = createfield();
     int result = drawscreen(arr);
+    arr = findcomborow(arr);
+    int result2 = drawscreen(arr);
 }
